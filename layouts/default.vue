@@ -11,7 +11,7 @@
               :key="item.name" 
               :to="item.path" 
               class="text-gray-600 hover:text-blue-600 cursor-pointer"
-              active-class="text-blue-600 font-medium"
+              :exact-active-class="'!text-blue-600 !font-medium'"
             >
               {{ item.name }}
             </NuxtLink>
@@ -56,6 +56,7 @@
                 :key="item.name" 
                 :to="item.path" 
                 class="block text-gray-400 hover:text-white cursor-pointer"
+                :exact-active-class="'!text-white !font-medium'"
               >
                 {{ item.name }}
               </NuxtLink>
