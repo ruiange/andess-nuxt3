@@ -31,7 +31,7 @@
 			</div>
 			<div class="grid grid-cols-4 gap-8">
 				<ProductItem 
-					v-for="(product, index) in products" 
+					v-for="(product, index) in filteredProducts" 
 					:key="product.name" 
 					:product="product"
 					:detailLink="`/products/${index + 1}`"
@@ -144,7 +144,7 @@ definePageMeta({
 	layout: 'default'
 });
 
-import { ref } from "vue";
+import { ref, computed } from "vue";
 import NewsItem from '~/components/NewsItem.vue';
 import ProductItem from '~/components/ProductItem.vue';
 import ProjectItem from '~/components/ProjectItem.vue';
@@ -203,28 +203,58 @@ const products = [
 	{
 		name: "环氧自流平地坪",
 		desc: "适用于工业厂房、仓库等场所，具有优异的耐磨性和防腐性",
-		image:
-				"https://public.readdy.ai/ai/img_res/583ab540e292cc052999ec05bd04f4f9.jpg",
+		image: "https://public.readdy.ai/ai/img_res/583ab540e292cc052999ec05bd04f4f9.jpg",
+		category: "地坪材料"
 	},
 	{
 		name: "SBS 改性沥青防水卷材",
 		desc: "高性能防水材料，适用于屋面、地下室等防水工程",
-		image:
-				"https://public.readdy.ai/ai/img_res/3bde06f6373ffb6dae597dff678a06e1.jpg",
+		image: "https://public.readdy.ai/ai/img_res/3bde06f6373ffb6dae597dff678a06e1.jpg",
+		category: "防水材料"
 	},
 	{
 		name: "岩棉保温板",
 		desc: "优质保温隔热材料，防火性能卓越，适用于外墙保温系统",
-		image:
-				"https://public.readdy.ai/ai/img_res/4ac233c00009ba8b9cc57b8405f48acb.jpg",
+		image: "https://public.readdy.ai/ai/img_res/4ac233c00009ba8b9cc57b8405f48acb.jpg",
+		category: "保温材料"
 	},
 	{
 		name: "碳纤维布",
 		desc: "用于混凝土结构加固补强，强度高、重量轻",
-		image:
-				"https://public.readdy.ai/ai/img_res/879e1962344565ed2ca90ceb42d1a460.jpg",
+		image: "https://public.readdy.ai/ai/img_res/879e1962344565ed2ca90ceb42d1a460.jpg",
+		category: "结构加固"
 	},
+	{
+		name: "金刚砂耐磨地坪",
+		desc: "适用于高强度耐磨场所，如物流中心、车间等，具有超强耐磨性",
+		image: "https://public.readdy.ai/ai/img_res/583ab540e292cc052999ec05bd04f4f9.jpg",
+		category: "地坪材料"
+	},
+	{
+		name: "聚氨酯防水涂料",
+		desc: "优质弹性防水涂料，适用于屋面、卫生间等防水工程",
+		image: "https://public.readdy.ai/ai/img_res/3bde06f6373ffb6dae597dff678a06e1.jpg",
+		category: "防水材料"
+	},
+	{
+		name: "挤塑聚苯板",
+		desc: "高性能保温材料，导热系数低，适用于外墙、屋面保温",
+		image: "https://public.readdy.ai/ai/img_res/4ac233c00009ba8b9cc57b8405f48acb.jpg",
+		category: "保温材料"
+	},
+	{
+		name: "植筋胶",
+		desc: "用于钢筋与混凝土的连接，粘结强度高，适用于结构加固工程",
+		image: "https://public.readdy.ai/ai/img_res/879e1962344565ed2ca90ceb42d1a460.jpg",
+		category: "结构加固"
+	}
 ];
+
+// 添加计算属性用于过滤产品
+const filteredProducts = computed(() => {
+	return products.filter(product => product.category === currentCategory.value);
+});
+
 const projects = [
 	{
 		name: "上海国际金融中心",
