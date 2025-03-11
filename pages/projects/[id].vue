@@ -19,16 +19,9 @@
             </div>
           </div>
           <div class="w-[600px]">
-            <swiper
-              :modules="swiperModules"
-              :pagination="{ clickable: true }"
-              :autoplay="{ delay: 3000 }"
-              class="rounded-lg overflow-hidden h-[400px]"
-            >
-              <swiper-slide v-for="(image, index) in projectImages" :key="index">
-                <img :src="image" class="w-full h-full object-cover" />
-              </swiper-slide>
-            </swiper>
+            <div class="rounded-lg overflow-hidden h-[400px]">
+              <img :src="projectImages[0]" class="w-full h-full object-cover" />
+            </div>
           </div>
         </div>
       </div>
@@ -141,8 +134,6 @@
 <script lang="ts" setup>
 import { ref } from 'vue';
 import { useRoute } from 'nuxt/app';
-import { Swiper, SwiperSlide } from 'swiper/vue';
-import { Pagination, Autoplay } from 'swiper/modules';
 import ProjectItem from '~/components/ProjectItem.vue';
 
 // 指定使用默认布局
@@ -153,7 +144,6 @@ definePageMeta({
 const route = useRoute();
 const projectId = route.params.id;
 
-const swiperModules = [Pagination, Autoplay];
 const showConsultModal = ref(false);
 
 const consultForm = ref({
