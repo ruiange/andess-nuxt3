@@ -90,12 +90,16 @@
 			<h3 class="text-3xl font-bold text-center mb-12">工程案例</h3>
 			<div class="grid grid-cols-3 gap-8">
 				<ProjectItem 
-					v-for="project in projects" 
+					v-for="(project, index) in projects" 
 					:key="project.name" 
 					:project="project"
-					detailLink="https://readdy.ai/home/c04c07c2-4169-470d-81e0-8f0a0ecbf8f5/45be900f-1ebb-4fa3-a5ad-5077417e2431"
-					:isReaddy="true"
+					:to="`/projects/${index + 1}`"
 				/>
+			</div>
+			<div class="text-center mt-10">
+				<NuxtLink to="/projects" class="!rounded-button bg-blue-600 text-white px-8 h-12 cursor-pointer whitespace-nowrap inline-flex items-center justify-center">
+					查看更多案例
+				</NuxtLink>
 			</div>
 		</div>
 		<!-- 新闻中心 -->

@@ -88,24 +88,12 @@
       <div class="max-w-[1440px] mx-auto px-8">
         <h2 class="text-3xl font-bold mb-12 text-center">应用案例</h2>
         <div class="grid grid-cols-3 gap-8">
-          <div v-for="(case_, index) in cases" :key="index" class="bg-white rounded-lg overflow-hidden group cursor-pointer">
-            <div class="aspect-video overflow-hidden">
-              <img :src="case_.image" class="w-full h-full object-cover transition duration-300 group-hover:scale-110">
-            </div>
-            <div class="p-6">
-              <h3 class="font-bold text-xl mb-2">{{ case_.title }}</h3>
-              <p class="text-gray-600 text-sm mb-4">{{ case_.desc }}</p>
-              <div class="flex justify-between items-center">
-                <span class="text-gray-500 text-sm">{{ case_.area }}</span>
-                <NuxtLink 
-                  :to="`/solutions/${index + 1}`" 
-                  class="!rounded-button bg-gray-100 text-gray-600 px-4 h-8 text-sm cursor-pointer whitespace-nowrap group-hover:bg-blue-600 group-hover:text-white inline-flex items-center justify-center"
-                >
-                  查看详情
-                </NuxtLink>
-              </div>
-            </div>
-          </div>
+          <ProjectItem
+            v-for="(case_, index) in cases"
+            :key="index"
+            :project="case_"
+            :to="`/solutions/${index + 1}`"
+          />
         </div>
       </div>
     </div>

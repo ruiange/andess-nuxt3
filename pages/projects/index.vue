@@ -43,33 +43,12 @@
 
       <!-- 案例列表 -->
       <div class="grid grid-cols-3 gap-8">
-        <div
+        <ProjectItem
           v-for="project in filteredProjects"
           :key="project.id"
-          class="bg-white rounded-lg overflow-hidden group cursor-pointer shadow-sm hover:shadow-md transition-shadow"
-        >
-          <NuxtLink :to="`/projects/${project.id}`">
-            <div class="h-[240px] overflow-hidden">
-              <img
-                :src="project.image"
-                class="w-full h-full object-cover transition duration-300 group-hover:scale-110"
-              />
-            </div>
-            <div class="p-6">
-              <div class="flex justify-between items-center mb-3">
-                <h3 class="font-bold text-lg group-hover:text-blue-600 transition-colors">{{ project.title }}</h3>
-                <span class="text-blue-600 text-sm">{{ project.category }}</span>
-              </div>
-              <p class="text-gray-600 text-sm mb-4 line-clamp-2">
-                {{ project.description }}
-              </p>
-              <div class="flex justify-between items-center">
-                <span class="text-sm text-gray-500">{{ project.location }}</span>
-                <span class="text-blue-600 text-sm">查看详情 →</span>
-              </div>
-            </div>
-          </NuxtLink>
-        </div>
+          :project="project"
+          :to="`/projects/${project.id}`"
+        />
       </div>
 
       <!-- 分页 -->
@@ -147,8 +126,9 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref, computed } from 'vue';
+import ProjectItem from '~/components/ProjectItem.vue';
 
 // 指定使用默认布局
 definePageMeta({
@@ -177,32 +157,32 @@ const projects = [
   {
     id: "1",
     title: "上海国际金融中心",
-    category: "工业地坪",
-    description: "为该项目地下停车场提供 15000 平方米环氧地坪解决方案，满足重载、防滑、美观等多重需求",
+    type: "工业地坪",
+    desc: "为该项目地下停车场提供 15000 平方米环氧地坪解决方案，满足重载、防滑、美观等多重需求",
     location: "上海市浦东新区",
     image: "https://public.readdy.ai/ai/img_res/01a06382cac35ae672475407850a663f.jpg",
   },
   {
     id: "2",
     title: "北京科技园区",
-    category: "工业地坪",
-    description: "为科技园区提供 20000 平方米金刚砂耐磨地坪，满足高强度使用需求",
+    type: "工业地坪",
+    desc: "为科技园区提供 20000 平方米金刚砂耐磨地坪，满足高强度使用需求",
     location: "北京市海淀区",
     image: "https://public.readdy.ai/ai/img_res/bb5b08fa68ff7e3fb062186b560e0b0c.jpg",
   },
   {
     id: "3",
     title: "南京奥体中心",
-    category: "防水工程",
-    description: "完成体育场馆屋面 8000 平方米 SBS 防水卷材施工，确保场馆防水性能达到国际标准",
+    type: "防水工程",
+    desc: "完成体育场馆屋面 8000 平方米 SBS 防水卷材施工，确保场馆防水性能达到国际标准",
     location: "江苏省南京市",
     image: "https://public.readdy.ai/ai/img_res/e53aee0721850f371511bc3d3161a254.jpg",
   },
   {
     id: "4",
     title: "杭州湾数据中心",
-    category: "保温工程",
-    description: "采用新型岩棉保温板系统，完成 12000 平方米外墙保温施工，有效提升建筑节能效果",
+    type: "保温工程",
+    desc: "采用新型岩棉保温板系统，完成 12000 平方米外墙保温施工，有效提升建筑节能效果",
     location: "浙江省宁波市",
     image: "https://public.readdy.ai/ai/img_res/ad6acb0748ae2c3772855d5d2ed176d6.jpg",
   }
@@ -214,7 +194,7 @@ const filteredProjects = computed(() => {
   
   // 按分类筛选
   if (activeCategory.value !== '全部') {
-    result = result.filter(project => project.category === activeCategory.value);
+    result = result.filter(project => project.type === activeCategory.value);
   }
   
   // 按搜索关键词筛选
@@ -222,7 +202,7 @@ const filteredProjects = computed(() => {
     const query = searchQuery.value.toLowerCase();
     result = result.filter(project => 
       project.title.toLowerCase().includes(query) || 
-      project.description.toLowerCase().includes(query) ||
+      project.desc.toLowerCase().includes(query) ||
       project.location.toLowerCase().includes(query)
     );
   }
@@ -232,30 +212,12 @@ const filteredProjects = computed(() => {
 
 // 计算总页数
 const totalPages = computed(() => {
-  let result = projects;
-  
-  // 按分类筛选
-  if (activeCategory.value !== '全部') {
-    result = result.filter(project => project.category === activeCategory.value);
-  }
-  
-  // 按搜索关键词筛选
-  if (searchQuery.value) {
-    const query = searchQuery.value.toLowerCase();
-    result = result.filter(project => 
-      project.title.toLowerCase().includes(query) || 
-      project.description.toLowerCase().includes(query) ||
-      project.location.toLowerCase().includes(query)
-    );
-  }
-  
-  return Math.ceil(result.length / pageSize);
+  return Math.ceil(filteredProjects.value.length / pageSize);
 });
 
 // 提交咨询
 const submitConsult = () => {
-  // 这里可以添加表单验证逻辑
-  alert(`感谢您的咨询，我们会尽快联系您！`);
+  // TODO: 实现表单提交逻辑
   showConsultModal.value = false;
   consultForm.value = {
     name: "",
