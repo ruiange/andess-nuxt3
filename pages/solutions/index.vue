@@ -1,63 +1,140 @@
 <template>
   <div class="min-h-[1024px]">
-    <!-- 页面标题 -->
-    <div class="bg-gray-50 py-16">
+    <!-- 方案分类导航 -->
+    <div class="bg-gray-50">
       <div class="max-w-[1440px] mx-auto px-8">
-        <h1 class="text-4xl font-bold text-center">解决方案</h1>
-        <p class="text-gray-600 text-center mt-4">为各行业提供专业的建材解决方案</p>
-      </div>
-    </div>
-    
-    <!-- 解决方案内容 -->
-    <div class="max-w-[1440px] mx-auto px-8 py-16">
-      <div class="flex gap-8">
-        <!-- 左侧导航 -->
-        <div class="w-64 bg-white rounded-lg p-6 shadow-sm">
-          <div
-            v-for="solution in solutions"
-            :key="solution"
-            @click="currentSolution = solution"
-            class="py-3 px-4 rounded cursor-pointer mb-2"
-            :class="currentSolution === solution ? 'bg-blue-600 text-white' : 'text-gray-600'"
+        <div class="py-6">
+          <div class="flex items-center gap-2 text-gray-600">
+            <a href="/" class="hover:text-blue-600">首页</a>
+            <i class="fas fa-chevron-right text-xs"></i>
+            <span>解决方案</span>
+          </div>
+        </div>
+        <div class="flex gap-4 border-b">
+          <button 
+            v-for="solution in solutions" 
+            :key="solution" 
+            @click="currentSolution = solution" 
+            class="!rounded-button px-8 py-4 cursor-pointer whitespace-nowrap"
+            :class="currentSolution === solution ? 'text-blue-600 border-b-2 border-blue-600' : 'text-gray-600'"
           >
             {{ solution }}
-          </div>
+          </button>
         </div>
-        
-        <!-- 右侧内容 -->
-        <div class="flex-1 bg-white rounded-lg p-8 shadow-sm">
-          <div class="flex gap-8">
-            <div class="flex-1">
-              <h4 class="text-2xl font-bold mb-4">{{ currentSolution }}</h4>
-              <p class="text-gray-600 mb-6">
-                {{ getSolutionDescription(currentSolution) }}
-              </p>
-              <ul class="space-y-4">
-                <li v-for="(feature, index) in getSolutionFeatures(currentSolution)" :key="index" class="flex items-center gap-3">
-                  <i class="fas fa-check-circle text-blue-600"></i>
-                  <span>{{ feature }}</span>
-                </li>
-              </ul>
-              
-              <div class="mt-8">
-                <h5 class="text-xl font-bold mb-4">适用场景</h5>
-                <div class="grid grid-cols-2 gap-4">
-                  <div v-for="(scenario, index) in getSolutionScenarios(currentSolution)" :key="index" class="flex items-center gap-2">
-                    <i class="fas fa-building text-blue-600"></i>
-                    <span>{{ scenario }}</span>
-                  </div>
-                </div>
+      </div>
+    </div>
+
+    <!-- 方案概述 -->
+    <div class="max-w-[1440px] mx-auto px-8 py-16">
+      <div class="flex gap-12">
+        <div class="flex-1">
+          <h1 class="text-4xl font-bold mb-6">{{ currentSolution }}</h1>
+          <p class="text-gray-600 mb-8">{{ getSolutionDescription(currentSolution) }}</p>
+          <div class="grid grid-cols-2 gap-6 mb-8">
+            <div v-for="(feature, index) in getSolutionFeatures(currentSolution)" :key="index" class="flex items-start gap-4 p-6 bg-gray-50 rounded-lg">
+              <i class="fas fa-check-circle text-2xl text-blue-600"></i>
+              <div>
+                <h3 class="font-bold mb-2">{{ feature }}</h3>
               </div>
-              
-              <button class="!rounded-button bg-blue-600 text-white px-6 h-10 cursor-pointer whitespace-nowrap mt-8">
-                获取方案详情
-              </button>
             </div>
-            <div class="w-80 rounded-lg overflow-hidden">
-              <img :src="getSolutionImage(currentSolution)" class="w-full h-full object-cover" />
+          </div>
+          <div class="flex gap-4">
+            <button @click="showConsultModal = true" class="!rounded-button bg-blue-600 text-white px-8 h-12 cursor-pointer whitespace-nowrap">在线咨询</button>
+            <button @click="showCustomModal = true" class="!rounded-button border-2 border-blue-600 text-blue-600 px-8 h-12 cursor-pointer whitespace-nowrap">方案定制</button>
+          </div>
+        </div>
+        <div class="w-[500px]">
+          <img :src="getSolutionImage(currentSolution)" class="w-full h-[400px] object-cover rounded-lg">
+        </div>
+      </div>
+    </div>
+
+    <!-- 技术参数 -->
+    <div class="bg-gray-50 py-16">
+      <div class="max-w-[1440px] mx-auto px-8">
+        <h2 class="text-3xl font-bold mb-12 text-center">技术参数</h2>
+        <div class="bg-white rounded-lg p-8">
+          <table class="w-full">
+            <tbody>
+              <tr v-for="(param, index) in techParams" :key="index" :class="index % 2 === 0 ? 'bg-gray-50' : ''">
+                <td class="py-4 px-6 font-bold w-1/4">{{ param.name }}</td>
+                <td class="py-4 px-6 text-gray-600">{{ param.value }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- 施工流程 -->
+    <div class="max-w-[1440px] mx-auto px-8 py-16">
+      <h2 class="text-3xl font-bold mb-12 text-center">施工流程</h2>
+      <div class="grid grid-cols-4 gap-8">
+        <div v-for="(step, index) in constructionSteps" :key="index" class="text-center">
+          <div class="relative mb-6">
+            <div class="w-20 h-20 rounded-full bg-blue-100 flex items-center justify-center mx-auto">
+              <i :class="step.icon" class="text-3xl text-blue-600"></i>
+            </div>
+            <div v-if="index < constructionSteps.length - 1" class="absolute top-10 left-[60%] w-full h-[2px] bg-blue-200"></div>
+          </div>
+          <h3 class="font-bold mb-2">{{ step.title }}</h3>
+          <p class="text-gray-600 text-sm">{{ step.desc }}</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 应用案例 -->
+    <div class="bg-gray-50 py-16">
+      <div class="max-w-[1440px] mx-auto px-8">
+        <h2 class="text-3xl font-bold mb-12 text-center">应用案例</h2>
+        <div class="grid grid-cols-3 gap-8">
+          <div v-for="(case_, index) in cases" :key="index" class="bg-white rounded-lg overflow-hidden group cursor-pointer">
+            <div class="aspect-video overflow-hidden">
+              <img :src="case_.image" class="w-full h-full object-cover transition duration-300 group-hover:scale-110">
+            </div>
+            <div class="p-6">
+              <h3 class="font-bold text-xl mb-2">{{ case_.title }}</h3>
+              <p class="text-gray-600 text-sm mb-4">{{ case_.desc }}</p>
+              <div class="flex justify-between items-center">
+                <span class="text-gray-500 text-sm">{{ case_.area }}</span>
+                <a href="#" class="!rounded-button bg-gray-100 text-gray-600 px-4 h-8 text-sm cursor-pointer whitespace-nowrap group-hover:bg-blue-600 group-hover:text-white inline-flex items-center justify-center">查看详情</a>
+              </div>
             </div>
           </div>
         </div>
+      </div>
+    </div>
+
+    <!-- 咨询弹窗 -->
+    <div v-if="showConsultModal" class="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+      <div class="bg-white rounded-lg w-[500px] p-8">
+        <div class="flex justify-between items-center mb-6">
+          <h3 class="text-xl font-bold">在线咨询</h3>
+          <i @click="showConsultModal = false" class="fas fa-times text-gray-400 cursor-pointer"></i>
+        </div>
+        <div class="space-y-4 mb-6">
+          <input v-model="consultForm.name" type="text" placeholder="您的称呼" class="w-full h-12 px-4 rounded-lg bg-gray-100 border-none">
+          <input v-model="consultForm.phone" type="text" placeholder="联系电话" class="w-full h-12 px-4 rounded-lg bg-gray-100 border-none">
+          <textarea v-model="consultForm.message" placeholder="咨询内容" rows="4" class="w-full p-4 rounded-lg bg-gray-100 border-none"></textarea>
+        </div>
+        <button @click="submitConsult" class="!rounded-button bg-blue-600 text-white w-full h-12 cursor-pointer whitespace-nowrap">提交咨询</button>
+      </div>
+    </div>
+
+    <!-- 定制弹窗 -->
+    <div v-if="showCustomModal" class="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+      <div class="bg-white rounded-lg w-[500px] p-8">
+        <div class="flex justify-between items-center mb-6">
+          <h3 class="text-xl font-bold">方案定制</h3>
+          <i @click="showCustomModal = false" class="fas fa-times text-gray-400 cursor-pointer"></i>
+        </div>
+        <div class="space-y-4 mb-6">
+          <input v-model="customForm.name" type="text" placeholder="您的称呼" class="w-full h-12 px-4 rounded-lg bg-gray-100 border-none">
+          <input v-model="customForm.phone" type="text" placeholder="联系电话" class="w-full h-12 px-4 rounded-lg bg-gray-100 border-none">
+          <input v-model="customForm.area" type="text" placeholder="项目面积" class="w-full h-12 px-4 rounded-lg bg-gray-100 border-none">
+          <textarea v-model="customForm.requirements" placeholder="具体需求" rows="4" class="w-full p-4 rounded-lg bg-gray-100 border-none"></textarea>
+        </div>
+        <button @click="submitCustom" class="!rounded-button bg-blue-600 text-white w-full h-12 cursor-pointer whitespace-nowrap">提交需求</button>
       </div>
     </div>
   </div>
@@ -71,15 +148,25 @@ definePageMeta({
 
 import { ref } from "vue";
 
-const solutions = [
+type SolutionType = "工业地坪解决方案" | "建筑防水解决方案" | "外墙保温解决方案" | "建筑加固解决方案";
+
+const solutions: SolutionType[] = [
   "工业地坪解决方案",
   "建筑防水解决方案",
   "外墙保温解决方案",
   "建筑加固解决方案",
 ];
-const currentSolution = ref("工业地坪解决方案");
 
-const solutionData = {
+const currentSolution = ref<SolutionType>("工业地坪解决方案");
+
+interface SolutionData {
+  description: string;
+  features: string[];
+  scenarios: string[];
+  image: string;
+}
+
+const solutionData: Record<SolutionType, SolutionData> = {
   "工业地坪解决方案": {
     description: "针对不同行业的地坪需求，我们提供专业的解决方案，包括环氧地坪、密封固化地坪、彩色艺术地坪等多种选择。我们的方案具有耐磨、防腐、防滑等特性，满足各类工业场所的使用需求。",
     features: ["超强耐磨性能", "优异防腐蚀性能", "卓越防滑性能", "美观持久", "施工周期短"],
@@ -106,20 +193,106 @@ const solutionData = {
   }
 };
 
-const getSolutionDescription = (solution) => {
-  return solutionData[solution]?.description || "";
+const techParams = [
+  { name: '抗压强度', value: '≥60MPa' },
+  { name: '附着力', value: '≥2.0MPa' },
+  { name: '耐磨性', value: '≤0.1g/1000r' },
+  { name: '抗冲击', value: '1.5kg.m' },
+  { name: '耐化学性', value: '耐酸、耐碱、耐油' },
+  { name: '施工厚度', value: '2-5mm' }
+];
+
+const constructionSteps = [
+  {
+    icon: 'fas fa-broom',
+    title: '基层处理',
+    desc: '打磨、除尘、修补'
+  },
+  {
+    icon: 'fas fa-paint-roller',
+    title: '底漆施工',
+    desc: '封闭处理、提高附着力'
+  },
+  {
+    icon: 'fas fa-layer-group',
+    title: '中涂施工',
+    desc: '找平、提供强度'
+  },
+  {
+    icon: 'fas fa-check-circle',
+    title: '面漆施工',
+    desc: '美观、耐磨、防护'
+  }
+];
+
+const cases = [
+  {
+    title: '某汽车制造厂',
+    desc: '总面积 15000 平方米，采用环氧自流平地坪，满足重载、防滑要求',
+    area: '15000㎡',
+    image: 'https://public.readdy.ai/ai/img_res/123456789abcdef0123456789abcdef0.jpg'
+  },
+  {
+    title: '某物流仓储中心',
+    desc: '总面积 20000 平方米，采用环氧砂浆地坪，满足防滑、耐磨要求',
+    area: '20000㎡',
+    image: 'https://public.readdy.ai/ai/img_res/234567890abcdef1234567890abcdef1.jpg'
+  },
+  {
+    title: '某电子厂净化车间',
+    desc: '总面积 8000 平方米，采用环氧防静电地坪，满足防静电要求',
+    area: '8000㎡',
+    image: 'https://public.readdy.ai/ai/img_res/345678901bcdef2345678901bcdef23.jpg'
+  }
+];
+
+const showConsultModal = ref(false);
+const showCustomModal = ref(false);
+
+const consultForm = ref({
+  name: '',
+  phone: '',
+  message: ''
+});
+
+const customForm = ref({
+  name: '',
+  phone: '',
+  area: '',
+  requirements: ''
+});
+
+const getSolutionDescription = (solution: SolutionType): string => {
+  return solutionData[solution].description;
 };
 
-const getSolutionFeatures = (solution) => {
-  return solutionData[solution]?.features || [];
+const getSolutionFeatures = (solution: SolutionType): string[] => {
+  return solutionData[solution].features;
 };
 
-const getSolutionScenarios = (solution) => {
-  return solutionData[solution]?.scenarios || [];
+const getSolutionImage = (solution: SolutionType): string => {
+  return solutionData[solution].image;
 };
 
-const getSolutionImage = (solution) => {
-  return solutionData[solution]?.image || "";
+const submitConsult = () => {
+  // TODO: Implement form submission
+  showConsultModal.value = false;
+  consultForm.value = {
+    name: '',
+    phone: '',
+    message: ''
+  };
+};
+
+const submitCustom = () => {
+  // TODO: Implement form submission
+  showCustomModal.value = false;
+  customForm.value = {
+    name: '',
+    phone: '',
+    area: '',
+    requirements: ''
+  };
 };
 </script>
 
