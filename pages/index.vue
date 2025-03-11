@@ -58,27 +58,24 @@
 					<div class="flex-1 bg-white rounded-lg p-8">
 						<div class="flex gap-8">
 							<div class="flex-1">
-								<h4 class="text-2xl font-bold mb-4">工业地坪解决方案</h4>
+								<h4 class="text-2xl font-bold mb-4">{{ solutionData[currentSolution].title }}</h4>
 								<p class="text-gray-600 mb-6">
-									针对不同行业的地坪需求，我们提供专业的解决方案，包括环氧地坪、密封固化地坪、彩色艺术地坪等多种选择。我们的方案具有：
+									{{ solutionData[currentSolution].description }}
 								</p>
 								<ul class="space-y-4">
-									<li class="flex items-center gap-3">
+									<li v-for="feature in solutionData[currentSolution].features" :key="feature" class="flex items-center gap-3">
 										<i class="fas fa-check-circle text-blue-600"></i>
-										<span>超强耐磨性能</span>
-									</li>
-									<li class="flex items-center gap-3">
-										<i class="fas fa-check-circle text-blue-600"></i>
-										<span>优异防腐蚀性能</span>
-									</li>
-									<li class="flex items-center gap-3">
-										<i class="fas fa-check-circle text-blue-600"></i>
-										<span>卓越防滑性能</span>
+										<span>{{ feature }}</span>
 									</li>
 								</ul>
+								<div class="mt-8">
+									<NuxtLink :to="`/solutions`" class="!rounded-button bg-blue-600 text-white px-8 h-12 cursor-pointer whitespace-nowrap inline-flex items-center justify-center">
+										了解更多
+									</NuxtLink>
+								</div>
 							</div>
 							<div class="w-80 rounded-lg overflow-hidden">
-								<img :src="solutionImage" class="w-full h-full object-cover" />
+								<img :src="solutionData[currentSolution].image" class="w-full h-full object-cover" />
 							</div>
 						</div>
 					</div>
@@ -158,9 +155,46 @@ const solutions = [
 	"建筑防水解决方案",
 	"外墙保温解决方案",
 	"建筑加固解决方案",
-];
+] as const;
+
+type SolutionType = typeof solutions[number];
+
+interface SolutionData {
+	title: string;
+	description: string;
+	features: string[];
+	image: string;
+}
+
+const solutionData: Record<SolutionType, SolutionData> = {
+	"工业地坪解决方案": {
+		title: "工业地坪解决方案",
+		description: "针对不同行业的地坪需求，我们提供专业的解决方案，包括环氧地坪、密封固化地坪、彩色艺术地坪等多种选择。我们的方案具有：",
+		features: ["超强耐磨性能", "优异防腐蚀性能", "卓越防滑性能", "美观持久", "施工周期短"],
+		image: "https://public.readdy.ai/ai/img_res/865f70f25b08a4cec082e49003d0c017.jpg"
+	},
+	"建筑防水解决方案": {
+		title: "建筑防水解决方案",
+		description: "我们提供全面的建筑防水解决方案，包括屋面防水、地下室防水、卫生间防水等。采用高品质防水材料和专业施工工艺，确保建筑物防水性能长期可靠。",
+		features: ["高弹性", "耐候性强", "施工简便", "使用寿命长", "环保无污染"],
+		image: "https://public.readdy.ai/ai/img_res/3bde06f6373ffb6dae597dff678a06e1.jpg"
+	},
+	"外墙保温解决方案": {
+		title: "外墙保温解决方案",
+		description: "我们的外墙保温解决方案采用优质保温材料和先进施工工艺，有效提升建筑物的保温隔热性能，降低能耗，提高居住舒适度。",
+		features: ["优异保温性能", "防火安全", "抗裂耐久", "施工便捷", "节能环保"],
+		image: "https://public.readdy.ai/ai/img_res/4ac233c00009ba8b9cc57b8405f48acb.jpg"
+	},
+	"建筑加固解决方案": {
+		title: "建筑加固解决方案",
+		description: "针对建筑结构加固需求，我们提供专业的加固解决方案，包括碳纤维加固、钢板加固、植筋加固等多种方式，确保建筑结构安全可靠。",
+		features: ["加固效果显著", "施工周期短", "不增加结构自重", "不改变建筑外观", "经济实用"],
+		image: "https://public.readdy.ai/ai/img_res/879e1962344565ed2ca90ceb42d1a460.jpg"
+	}
+};
+
 const currentCategory = ref("地坪材料");
-const currentSolution = ref("工业地坪解决方案");
+const currentSolution = ref<SolutionType>("工业地坪解决方案");
 const heroBackground =
 		"https://public.readdy.ai/ai/img_res/4af33f48ef7a51c81f14145c7923a08c.jpg";
 const solutionImage =
