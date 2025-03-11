@@ -8,8 +8,8 @@
 						<h2 class="text-5xl font-bold mb-6">专业建材解决方案提供商</h2>
 						<p class="text-xl mb-8">25 年专业经验，服务超过 10000 个工程项目</p>
 						<div class="flex gap-4">
-							<button class="!rounded-button bg-blue-600 px-8 h-12 cursor-pointer whitespace-nowrap">了解更多</button>
-							<button class="!rounded-button border-2 border-white px-8 h-12 cursor-pointer whitespace-nowrap">工程案例</button>
+							<NuxtLink to="/about" class="!rounded-button bg-blue-600 px-8 h-12 cursor-pointer whitespace-nowrap inline-flex items-center justify-center">了解更多</NuxtLink>
+							<NuxtLink to="/projects" class="!rounded-button border-2 border-white px-8 h-12 cursor-pointer whitespace-nowrap inline-flex items-center justify-center">工程案例</NuxtLink>
 						</div>
 					</div>
 				</div>
@@ -31,10 +31,10 @@
 			</div>
 			<div class="grid grid-cols-4 gap-8">
 				<ProductItem 
-					v-for="product in products" 
+					v-for="(product, index) in products" 
 					:key="product.name" 
 					:product="product"
-					detailLink="https://readdy.ai/home/c04c07c2-4169-470d-81e0-8f0a0ecbf8f5/45be900f-1ebb-4fa3-a5ad-5077417e2431"
+					:detailLink="`/products/${index + 1}`"
 					:isReaddy="true"
 				/>
 			</div>
