@@ -97,7 +97,12 @@
               <p class="text-gray-600 text-sm mb-4">{{ case_.desc }}</p>
               <div class="flex justify-between items-center">
                 <span class="text-gray-500 text-sm">{{ case_.area }}</span>
-                <a href="#" class="!rounded-button bg-gray-100 text-gray-600 px-4 h-8 text-sm cursor-pointer whitespace-nowrap group-hover:bg-blue-600 group-hover:text-white inline-flex items-center justify-center">查看详情</a>
+                <NuxtLink 
+                  :to="`/solutions/${index + 1}`" 
+                  class="!rounded-button bg-gray-100 text-gray-600 px-4 h-8 text-sm cursor-pointer whitespace-nowrap group-hover:bg-blue-600 group-hover:text-white inline-flex items-center justify-center"
+                >
+                  查看详情
+                </NuxtLink>
               </div>
             </div>
           </div>
