@@ -1,69 +1,15 @@
 <template>
 	<div class="min-h-[1024px]">
-		<!-- 导航栏 -->
-		<nav class="fixed top-0 left-0 right-0 bg-white shadow-sm z-50">
-			<div
-					class="max-w-[1440px] mx-auto px-8 h-20 flex items-center justify-between"
-			>
-				<div class="flex items-center gap-16">
-					<h1 class="text-2xl font-bold">建材之家</h1>
-					<div class="flex gap-8">
-						<a
-								v-for="item in navItems"
-								:key="item"
-								:href="item === '解决方案' ? 'https://readdy.ai/home/c04c07c2-4169-470d-81e0-8f0a0ecbf8f5/0751a0c2-9caf-4f48-84e2-a655a2c27005' : '#'"
-								:data-readdy="item === '解决方案'"
-								class="text-gray-600 hover:text-blue-600 cursor-pointer"
-						>{{ item }}</a
-						>
-					</div>
-				</div>
-				<div class="flex items-center gap-4">
-					<div class="relative">
-						<input
-								type="text"
-								placeholder="搜索产品或解决方案"
-								class="w-64 h-10 pl-10 pr-4 rounded-lg bg-gray-100 border-none text-sm"
-						/>
-						<i
-								class="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
-						></i>
-					</div>
-					<button
-							class="!rounded-button bg-blue-600 text-white px-6 h-10 cursor-pointer whitespace-nowrap"
-					>
-						联系我们
-					</button>
-				</div>
-			</div>
-		</nav>
 		<!-- Hero区域 -->
-		<div class="pt-20">
-			<div
-					class="relative h-[600px] bg-cover bg-center"
-					:style="{ backgroundImage: `url(${heroBackground})` }"
-			>
-				<div
-						class="absolute inset-0 bg-gradient-to-r from-gray-900/80 to-transparent"
-				>
-					<div class="max-w-[1440px] mx-auto px-8 h-full flex items-center">
-						<div class="max-w-2xl text-white">
-							<h2 class="text-5xl font-bold mb-6">专业建材解决方案提供商</h2>
-							<p class="text-xl mb-8">
-								25 年专业经验，服务超过 10000 个工程项目
-							</p>
-							<div class="flex gap-4">
-								<button
-										class="!rounded-button bg-blue-600 px-8 h-12 cursor-pointer whitespace-nowrap"
-								>
-									了解更多
-								</button>
-								<button
-										class="!rounded-button border-2 border-white px-8 h-12 cursor-pointer whitespace-nowrap"
-								>
-									工程案例
-								</button>
-							</div>
+		<div class="relative h-[600px] bg-cover bg-center" :style="{ backgroundImage: `url(${heroBackground})` }">
+			<div class="absolute inset-0 bg-gradient-to-r from-gray-900/80 to-transparent">
+				<div class="max-w-[1440px] mx-auto px-8 h-full flex items-center">
+					<div class="max-w-2xl text-white">
+						<h2 class="text-5xl font-bold mb-6">专业建材解决方案提供商</h2>
+						<p class="text-xl mb-8">25 年专业经验，服务超过 10000 个工程项目</p>
+						<div class="flex gap-4">
+							<button class="!rounded-button bg-blue-600 px-8 h-12 cursor-pointer whitespace-nowrap">了解更多</button>
+							<button class="!rounded-button border-2 border-white px-8 h-12 cursor-pointer whitespace-nowrap">工程案例</button>
 						</div>
 					</div>
 				</div>
@@ -101,8 +47,7 @@
 							href="https://readdy.ai/home/c04c07c2-4169-470d-81e0-8f0a0ecbf8f5/45be900f-1ebb-4fa3-a5ad-5077417e2431"
 							data-readdy="true"
 							class="!rounded-button bg-gray-100 text-gray-600 px-4 h-8 text-sm cursor-pointer whitespace-nowrap group-hover:bg-blue-600 group-hover:text-white inline-flex items-center justify-center"
-					>查看详情</a
-					>
+					>查看详情</a>
 				</div>
 			</div>
 		</div>
@@ -179,8 +124,7 @@
 									href="https://readdy.ai/home/c04c07c2-4169-470d-81e0-8f0a0ecbf8f5/45be900f-1ebb-4fa3-a5ad-5077417e2431"
 									data-readdy="true"
 									class="!rounded-button bg-gray-100 text-gray-600 px-4 h-8 text-sm cursor-pointer whitespace-nowrap group-hover:bg-blue-600 group-hover:text-white inline-flex items-center justify-center"
-							>查看详情</a
-							>
+							>查看详情</a>
 						</div>
 					</div>
 				</div>
@@ -209,9 +153,7 @@
 						</div>
 						<div class="p-6">
 							<div class="flex items-center gap-4 text-sm text-gray-500 mb-3">
-                <span
-                ><i class="far fa-calendar-alt mr-2"></i>{{ news.date }}</span
-                >
+                <span><i class="far fa-calendar-alt mr-2"></i>{{ news.date }}</span>
 								<span><i class="far fa-eye mr-2"></i>{{ news.views }}</span>
 							</div>
 							<h4 class="font-bold text-lg mb-3 group-hover:text-blue-600">
@@ -244,65 +186,16 @@
 				</div>
 			</div>
 		</div>
-		<!-- 页脚 -->
-		<footer class="bg-gray-900 text-white py-16">
-			<div class="max-w-[1440px] mx-auto px-8">
-				<div class="grid grid-cols-4 gap-8 mb-12">
-					<div>
-						<h4 class="text-xl font-bold mb-6">关于我们</h4>
-						<p class="text-gray-400">
-							建材之家成立于 2000
-							年，是中国领先的建筑材料供应商，专注于为客户提供高品质的建材产品和专业的技术服务。
-						</p>
-					</div>
-					<div>
-						<h4 class="text-xl font-bold mb-6">联系方式</h4>
-						<div class="space-y-4 text-gray-400">
-							<p>电话：400-888-8888</p>
-							<p>邮箱：contact@jiancai.com</p>
-							<p>地址：上海市浦东新区张江高科技园区</p>
-						</div>
-					</div>
-					<div>
-						<h4 class="text-xl font-bold mb-6">快速导航</h4>
-						<div class="space-y-4">
-							<a
-									v-for="item in navItems"
-									:key="item"
-									:href="item === '关于我们' ? 'https://readdy.ai/home/c04c07c2-4169-470d-81e0-8f0a0ecbf8f5/342f4f9c-d69e-4037-b6fe-d8a256a16e49' : '#'"
-									:data-readdy="item === '关于我们'"
-									class="block text-gray-400 hover:text-white cursor-pointer"
-							>{{ item }}</a
-							>
-						</div>
-					</div>
-					<div>
-						<h4 class="text-xl font-bold mb-6">关注我们</h4>
-						<div class="flex gap-4">
-							<i class="fab fa-weixin text-2xl cursor-pointer"></i>
-							<i class="fab fa-weibo text-2xl cursor-pointer"></i>
-							<i class="fab fa-qq text-2xl cursor-pointer"></i>
-						</div>
-					</div>
-				</div>
-				<div class="text-center text-gray-400 pt-8 border-t border-gray-800">
-					<p>© 2025 建材之家. 保留所有权利</p>
-				</div>
-			</div>
-		</footer>
 	</div>
 </template>
 
 <script lang="ts" setup>
+// 指定使用默认布局
+definePageMeta({
+	layout: 'default'
+});
+
 import { ref } from "vue";
-const navItems = [
-	"首页",
-	"产品中心",
-	"解决方案",
-	"工程案例",
-	"新闻中心",
-	"关于我们",
-];
 const categories = ["地坪材料", "防水材料", "保温材料", "装饰材料", "结构加固"];
 const solutions = [
 	"工业地坪解决方案",
