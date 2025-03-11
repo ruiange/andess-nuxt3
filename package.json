@@ -10,6 +10,7 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^6.7.2",
     "@nuxtjs/tailwindcss": "^6.13.2",
     "echarts": "^5.6.0",
     "nuxt": "^3.16.0",
