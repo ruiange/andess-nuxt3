@@ -4,9 +4,17 @@
     <nav class="fixed top-0 left-0 right-0 bg-white shadow-sm z-50">
       <div class="max-w-[1440px] mx-auto px-8 h-20 flex items-center justify-between">
         <div class="flex items-center gap-16">
-          <h1 class="text-2xl font-bold">建材之家</h1>
+          <NuxtLink to="/" class="text-2xl font-bold">建材之家</NuxtLink>
           <div class="flex gap-8">
-            <a v-for="item in navItems" :key="item" class="text-gray-600 hover:text-blue-600 cursor-pointer">{{ item }}</a>
+            <NuxtLink 
+              v-for="item in navItems" 
+              :key="item.name" 
+              :to="item.path" 
+              class="text-gray-600 hover:text-blue-600 cursor-pointer"
+              active-class="text-blue-600 font-medium"
+            >
+              {{ item.name }}
+            </NuxtLink>
           </div>
         </div>
         <div class="flex items-center gap-4">
@@ -14,7 +22,7 @@
             <input type="text" placeholder="搜索产品或解决方案" class="w-64 h-10 pl-10 pr-4 rounded-lg bg-gray-100 border-none text-sm">
             <i class="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"></i>
           </div>
-          <button class="!rounded-button bg-blue-600 text-white px-6 h-10 cursor-pointer whitespace-nowrap">联系我们</button>
+          <NuxtLink to="/contact" class="!rounded-button bg-blue-600 text-white px-6 h-10 cursor-pointer whitespace-nowrap flex items-center justify-center">联系我们</NuxtLink>
         </div>
       </div>
     </nav>
@@ -43,7 +51,14 @@
           <div>
             <h4 class="text-xl font-bold mb-6">快速导航</h4>
             <div class="space-y-4">
-              <a v-for="item in navItems" :key="item" class="block text-gray-400 hover:text-white cursor-pointer">{{ item }}</a>
+              <NuxtLink 
+                v-for="item in navItems" 
+                :key="item.name" 
+                :to="item.path" 
+                class="block text-gray-400 hover:text-white cursor-pointer"
+              >
+                {{ item.name }}
+              </NuxtLink>
             </div>
           </div>
           <div>
@@ -64,7 +79,13 @@
 </template>
 
 <script setup>
-const navItems = ['首页', '产品中心', '解决方案', '工程案例', '关于我们'];
+const navItems = [
+  { name: '首页', path: '/' },
+  { name: '产品中心', path: '/products' },
+  { name: '解决方案', path: '/solutions' },
+  { name: '工程案例', path: '/projects' },
+  { name: '关于我们', path: '/about' }
+];
 </script>
 
 <style scoped>
