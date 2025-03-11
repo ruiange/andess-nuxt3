@@ -2,21 +2,8 @@
 
 <template>
 	<div class="min-h-[1024px]">
-		<!-- 导航栏 -->
-		<nav class="fixed top-0 left-0 right-0 bg-white shadow-sm z-50">
-			<div class="max-w-[1440px] mx-auto px-8 h-20 flex items-center justify-between">
-				<div class="flex items-center gap-16">
-					<a href="https://readdy.ai/home/c04c07c2-4169-470d-81e0-8f0a0ecbf8f5/0751a0c2-9caf-4f48-84e2-a655a2c27005" data-readdy="true" class="text-2xl font-bold">建材之家</a>
-					<div class="flex gap-8">
-						<a v-for="item in navItems" :key="item" class="text-gray-600 hover:text-blue-600 cursor-pointer">{{ item }}</a>
-					</div>
-				</div>
-				<button class="!rounded-button bg-blue-600 text-white px-6 h-10 cursor-pointer whitespace-nowrap">联系我们</button>
-			</div>
-		</nav>
-		
 		<!-- 面包屑导航 -->
-		<div class="pt-20 bg-gray-50">
+		<div class="bg-gray-50">
 			<div class="max-w-[1440px] mx-auto px-8 py-6">
 				<div class="flex items-center gap-2 text-gray-600">
 					<a href="https://readdy.ai/home/c04c07c2-4169-470d-81e0-8f0a0ecbf8f5/0751a0c2-9caf-4f48-84e2-a655a2c27005" data-readdy="true" class="hover:text-blue-600">首页</a>
@@ -114,7 +101,12 @@
 							<p class="text-gray-600 text-sm mb-4">{{ case_.desc }}</p>
 							<div class="flex justify-between items-center">
 								<span class="text-sm text-gray-500">{{ case_.area }}</span>
-								<button class="!rounded-button bg-gray-100 text-gray-600 px-4 py-2 text-sm group-hover:bg-blue-600 group-hover:text-white">查看详情</button>
+								<NuxtLink 
+									:to="`/solutions/${case_.id}`" 
+									class="!rounded-button bg-gray-100 text-gray-600 px-4 py-2 text-sm group-hover:bg-blue-600 group-hover:text-white"
+								>
+									查看方案详情
+								</NuxtLink>
 							</div>
 						</div>
 					</div>
@@ -152,8 +144,15 @@ import { ref } from 'vue';
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import { Pagination, Autoplay } from 'swiper/modules';
 
+interface SimilarCase {
+	id: string;
+	title: string;
+	desc: string;
+	area: string;
+	image: string;
+}
+
 const swiperModules = [Pagination, Autoplay];
-const navItems = ['首页', '产品中心', '解决方案', '工程案例', '关于我们'];
 const showConsultModal = ref(false);
 
 const consultForm = ref({
@@ -214,20 +213,23 @@ const constructionProcess = [
 	}
 ];
 
-const similarCases = [
+const similarCases: SimilarCase[] = [
 	{
+		id: 'logistics-warehouse',
 		title: '某物流仓储中心',
 		desc: '采用环氧砂浆地坪，满足重载叉车频繁作业需求',
 		area: '20,000㎡',
 		image: 'https://public.readdy.ai/ai/img_res/f7bdd8c07adfa4acae381b38badfff46.jpg'
 	},
 	{
+		id: 'food-processing',
 		title: '某食品加工车间',
 		desc: '采用食品级环氧地坪，满足卫生防腐要求',
 		area: '12,000㎡',
 		image: 'https://public.readdy.ai/ai/img_res/79b2493085f78796a7727d0db5f2cecd.jpg'
 	},
 	{
+		id: 'electronics-cleanroom',
 		title: '某电子厂净化车间',
 		desc: '采用防静电环氧地坪，满足电子产品生产需求',
 		area: '8,000㎡',
