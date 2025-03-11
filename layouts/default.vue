@@ -84,6 +84,7 @@ const navItems = [
   { name: '产品中心', path: '/products' },
   { name: '解决方案', path: '/solutions' },
   { name: '工程案例', path: '/projects' },
+  { name: '新闻中心', path: '/news' },
   { name: '关于我们', path: '/about' }
 ];
 </script>

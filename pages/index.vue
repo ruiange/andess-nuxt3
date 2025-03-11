@@ -107,9 +107,15 @@
 						v-for="news in newsItems" 
 						:key="news.title" 
 						:news="news"
-						newsLink="https://readdy.ai/home/c04c07c2-4169-470d-81e0-8f0a0ecbf8f5/df317973-cd20-4ac3-8c49-d88c36265e51"
+						:newsLink="`/news/${news.id}`"
+						:readMoreLink="`/news/${news.id}`"
 						:isReaddy="true"
 					/>
+				</div>
+				<div class="text-center mt-10">
+					<NuxtLink to="/news" class="!rounded-button bg-blue-600 text-white px-8 h-12 cursor-pointer whitespace-nowrap inline-flex items-center justify-center">
+						查看更多新闻
+					</NuxtLink>
 				</div>
 			</div>
 		</div>
@@ -209,15 +215,17 @@ const projects = [
 ];
 const newsItems = [
 	{
+		id: "1",
 		title: "建材之家荣获2025年度建材行业创新企业奖",
 		summary:
-				'在近日举行的2025年度建材行业峰会上，建材之家凭借在环保建材领域的突出创新成果，荣获"年度建材行业创新企业奖"。这是对公司在可持续发展道路上持续努力的肯定。',
+				'在近日举行的2025年度建材行业峰会上，建材之家凭借在环保建材领域的突出创新成果，荣获\'年度建材行业创新企业奖\'。这是对公司在可持续发展道路上持续努力的肯定。',
 		date: "2025-03-08",
 		views: "2,358",
 		image:
 				"https://public.readdy.ai/ai/img_res/d3cd44578f77a34f667116b3c5fc0513.jpg",
 	},
 	{
+		id: "2",
 		title: "新型环保地坪材料技术突破，助力碳中和",
 		summary:
 				"我司研发团队历时两年，成功开发出新一代环保型环氧地坪材料，VOC释放量较传统产品降低85%，同时保持优异的物理性能，获得国家发明专利。",
@@ -227,6 +235,7 @@ const newsItems = [
 				"https://public.readdy.ai/ai/img_res/b7f0fd25fe00a92ecbb1dce6165ea17d.jpg",
 	},
 	{
+		id: "3",
 		title: "建材之家完成杭州亚运场馆系列项目交付",
 		summary:
 				"历时8个月，建材之家圆满完成杭州亚运会主场馆及配套设施的防水、地坪等工程项目。项目采用多项创新技术，获得业主方高度评价。",
