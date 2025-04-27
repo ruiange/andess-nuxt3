@@ -38,30 +38,28 @@
         
         <div class="info-item">
           <strong>地址：</strong>
-          <p>中国上海市浦东新区张江高科技园区</p>
+          <p>{{ contactInfo?.data?.address  }}</p>
         </div>
         
         <div class="info-item">
           <strong>电话：</strong>
-          <p>+86 123 4567 8910</p>
+          <p>{{ contactInfo?.data?.phone  }}</p>
         </div>
         
         <div class="info-item">
           <strong>电子邮件：</strong>
-          <p>info@example.com</p>
+          <p>{{ contactInfo?.data?.email  }}</p>
         </div>
         
-        <div class="info-item">
-          <strong>工作时间：</strong>
-          <p>周一至周五: 9:00 - 18:00</p>
-        </div>
+
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
-import {ref} from 'vue';
+const { data: contactInfo } = await useFetch('/api/contact/info')
+
 useHead({
   title: '联系我们'
 });
