@@ -1,6 +1,37 @@
 <template>
-  <div class="custom-layout">
-    <header class="custom-header">
+  <t-layout>
+  <t-aside>
+    <t-menu
+      default-value="dashboard"
+      :theme="headerTheme"
+      style="height: 100%"
+    >
+      <template #logo>
+        <div class="menu-logo">管理后台</div>
+      </template>
+      <t-menu-item value="dashboard">
+        <template #icon>
+          <t-icon name="dashboard" />
+        </template>
+        控制面板
+      </t-menu-item>
+      <t-menu-item value="profile">
+        <template #icon>
+          <t-icon name="user" />
+        </template>
+        个人资料
+      </t-menu-item>
+      <t-menu-item value="settings">
+        <template #icon>
+          <t-icon name="setting" />
+        </template>
+        系统设置
+      </t-menu-item>
+    </t-menu>
+  </t-aside>
+  <t-layout>
+    <t-layout>
+  <t-header class="custom-header">
       <h1>自定义布局</h1>
       <nav>
         <NuxtLink to="/">返回首页</NuxtLink>
@@ -8,24 +39,52 @@
     </header>
     
     <div class="custom-content">
-      <aside class="sidebar">
-        <h3>侧边栏菜单</h3>
-        <ul>
-          <li><NuxtLink to="/admin/dashboard">控制面板</NuxtLink></li>
-          <li><NuxtLink to="/profile">个人资料</NuxtLink></li>
-          <li><NuxtLink to="/settings">设置</NuxtLink></li>
-        </ul>
-      </aside>
+      <t-menu
+        default-value="dashboard"
+        :theme="headerTheme"
+        style="height: 100%"
+      >
+        <template #logo>
+          <div class="menu-logo">管理后台    </t-footer>
+  </t-layout>
+</t-layout>
+        </template>
+        <t-menu-item value="dashboard">
+          <template #icon>
+            <t-icon name="dashboard" />
+          </template>
+          控制面板
+        </t-menu-item>
+        <t-menu-item value="profile">
+          <template #icon>
+            <t-icon name="user" />
+          </template>
+          个人资料
+        </t-menu-item>
+        <t-menu-item value="settings">
+          <template #icon>
+            <t-icon name="setting" />
+          </template>
+          系统设置
+        </t-menu-item>
+      </t-menu>
       
       <main class="main-area">
         <slot />
       </main>
-    </div>
+    <t-footer class="custom-footer">
+      <p>系统页脚 &copy; 2024</p>
+    </t-footer>
+  </t-layout>
+</t-layout>
     
-    <footer class="custom-footer">
+      </t-content>
+    <t-footer class="custom-footer">
       <p>自定义布局页脚 &copy; 2023</p>
     </footer>
-  </div>
+      </t-footer>
+  </t-layout>
+</t-layout>
 </template>
 
 <style scoped>
@@ -99,4 +158,4 @@
   text-align: center;
   padding: 1rem;
 }
-</style> 
+</style>

@@ -1,33 +1,52 @@
 <template>
   <div class="dashboard">
     <h1>仪表盘</h1>
-    <p>这个页面使用自定义布局，具有侧边栏导航。</p>
     
-    <div class="dashboard-grid">
-      <div class="dashboard-card">
-        <h3>用户统计</h3>
-        <div class="stat">1,234</div>
-        <p>活跃用户</p>
-      </div>
+    <t-row :gutter="[16, 16]">
+      <t-col :xs="12" :sm="6" :lg="3">
+        <t-card theme="primary" hover-shadow>
+          <template #title>用户统计</template>
+          <template #subtitle>活跃用户</template>
+          <template #actions>
+            <t-icon name="user" />
+          </template>
+          <div class="stat-number">1,234</div>
+        </t-card>
+      </t-col>
       
-      <div class="dashboard-card">
-        <h3>收入</h3>
-        <div class="stat">¥9,876</div>
-        <p>本月收入</p>
-      </div>
+      <t-col :xs="12" :sm="6" :lg="3">
+        <t-card theme="success" hover-shadow>
+          <template #title>收入</template>
+          <template #subtitle>本月收入</template>
+          <template #actions>
+            <t-icon name="money" />
+          </template>
+          <div class="stat-number">¥9,876</div>
+        </t-card>
+      </t-col>
       
-      <div class="dashboard-card">
-        <h3>订单</h3>
-        <div class="stat">567</div>
-        <p>待处理订单</p>
-      </div>
+      <t-col :xs="12" :sm="6" :lg="3">
+        <t-card theme="warning" hover-shadow>
+          <template #title>订单</template>
+          <template #subtitle>待处理订单</template>
+          <template #actions>
+            <t-icon name="cart" />
+          </template>
+          <div class="stat-number">567</div>
+        </t-card>
+      </t-col>
       
-      <div class="dashboard-card">
-        <h3>评论</h3>
-        <div class="stat">42</div>
-        <p>新评论</p>
-      </div>
-    </div>
+      <t-col :xs="12" :sm="6" :lg="3">
+        <t-card theme="danger" hover-shadow>
+          <template #title>评论</template>
+          <template #subtitle>新评论</template>
+          <template #actions>
+            <t-icon name="chat" />
+          </template>
+          <div class="stat-number">42</div>
+        </t-card>
+      </t-col>
+    </t-row>
     
     <div class="recent-activity">
       <h2>最近活动</h2>
@@ -44,7 +63,7 @@
 <script setup>
 // 使用自定义布局
 definePageMeta({
-  layout: 'custom'
+  layout: 'admin'
 });
 </script>
 
@@ -113,4 +132,11 @@ h1 {
 .recent-activity li:last-child {
   border-bottom: none;
 }
-</style> 
+
+.stat-number {
+  font-size: 24px;
+  font-weight: bold;
+  color: var(--td-brand-color);
+  margin-top: 8px;
+}
+</style>

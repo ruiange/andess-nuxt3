@@ -11,6 +11,10 @@ export default defineNuxtConfig({
   },
   compatibilityDate: '2025-04-25',
 
+  // 开发工具配置
+  // https://devtools.nuxt.com
+  devtools: { enabled: true },
+
   // Nuxt 4 兼容性配置
   // https://nuxt.com/docs/getting-started/upgrade#testing-nuxt-4
   future: { compatibilityVersion: 4 },
