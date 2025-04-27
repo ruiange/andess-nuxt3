@@ -7,7 +7,7 @@ useHead({
 definePageMeta({
   layout: "default",
 });
-
+const { data: contactInfo } = await useFetch('/api/contact/info')
 const bannerImage =
   "https://public.readdy.ai/ai/img_res/3749f1e91c4a201b63bb775267eaed72.jpg";
 const companyImage =
@@ -286,15 +286,15 @@ const certificates = [
                 <div class="space-y-3">
                   <div class="flex items-center gap-3 text-gray-600">
                     <i class="fas fa-phone"></i>
-                    <span>18513687900</span>
+                    <span>{{ contactInfo?.data?.phone  }}</span>
                   </div>
                   <div class="flex items-center gap-3 text-gray-600">
                     <i class="fas fa-envelope"></i>
-                    <span>andess@andess.com</span>
+                    <span>{{ contactInfo?.data?.email  }}</span>
                   </div>
                   <div class="flex items-center gap-3 text-gray-600">
                     <i class="fas fa-map-marker-alt"></i>
-                    <span>北京市丰台区丰科路万达广场写字楼C座517-518 </span>
+                    <span>{{ contactInfo?.data?.address  }}</span>
                   </div>
                 </div>
               </div>
