@@ -11,7 +11,7 @@
       <aside class="sidebar">
         <h3>侧边栏菜单</h3>
         <ul>
-          <li><NuxtLink to="/dashboard">控制面板</NuxtLink></li>
+          <li><NuxtLink to="/admin/dashboard">控制面板</NuxtLink></li>
           <li><NuxtLink to="/profile">个人资料</NuxtLink></li>
           <li><NuxtLink to="/settings">设置</NuxtLink></li>
         </ul>
