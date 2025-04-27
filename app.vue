@@ -6,6 +6,13 @@
   </div>
 </template>
 
+<script setup>
+useHead({
+  title: '建材之家',
+  titleTemplate: '%s - 建材之家'
+})
+</script>
+
 <style>
 html, body {
   margin: 0;

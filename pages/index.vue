@@ -144,6 +144,10 @@ definePageMeta({
 	layout: 'default'
 });
 
+useHead({
+	title: '首页'
+});
+
 import {computed, ref} from "vue";
 import NewsItem from '~/components/NewsItem.vue';
 import ProductItem from '~/components/ProductItem.vue';

@@ -1,3 +1,5 @@
+
+
 <template>
   <div class="contact-page">
     <h1>联系我们</h1>
@@ -60,7 +62,9 @@
 
 <script setup>
 import {ref} from 'vue';
-
+useHead({
+  title: '联系我们'
+});
 definePageMeta({
   layout: 'default'
 });
@@ -189,4 +193,4 @@ h1 {
   margin: 0;
   color: #666;
 }
-</style> 
+</style>
