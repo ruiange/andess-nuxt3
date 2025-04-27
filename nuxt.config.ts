@@ -1,13 +1,10 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  devtools: {
-    enabled: false
-  },
-  modules: ['@nuxtjs/tailwindcss','@nuxthub/core'],
+  modules: ['@tdesign-vue-next/nuxt','@nuxtjs/tailwindcss', '@nuxthub/core'],
   nitro: {
     experimental: {
-      openAPI: true
-    }
+      openAPI: true,
+    },
   },
   compatibilityDate: '2025-04-25',
 
@@ -38,5 +35,5 @@ export default defineNuxtConfig({
     exposeConfig: true,
     viewer: true,
     // and more...
-  }
-})
+  },
+});
