@@ -1,4 +1,6 @@
 export default eventHandler(async () => {
+    const contactInfo = await hubKV().get('contact-info')
+    console.log(contactInfo)
     return {
         code: 200,
         data: {

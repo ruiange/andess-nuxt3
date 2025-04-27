@@ -1,53 +1,12 @@
 <template>
   <t-layout>
-  <t-aside>
-    <t-menu
-      default-value="dashboard"
-      :theme="headerTheme"
-      style="height: 100%"
-    >
-      <template #logo>
-        <div class="menu-logo">管理后台</div>
-      </template>
-      <t-menu-item value="dashboard">
-        <template #icon>
-          <t-icon name="dashboard" />
-        </template>
-        控制面板
-      </t-menu-item>
-      <t-menu-item value="profile">
-        <template #icon>
-          <t-icon name="user" />
-        </template>
-        个人资料
-      </t-menu-item>
-      <t-menu-item value="settings">
-        <template #icon>
-          <t-icon name="setting" />
-        </template>
-        系统设置
-      </t-menu-item>
-    </t-menu>
-  </t-aside>
-  <t-layout>
-    <t-layout>
-  <t-header class="custom-header">
-      <h1>自定义布局</h1>
-      <nav>
-        <NuxtLink to="/">返回首页</NuxtLink>
-      </nav>
-    </header>
-    
-    <div class="custom-content">
+    <t-aside>
       <t-menu
         default-value="dashboard"
-        :theme="headerTheme"
         style="height: 100%"
       >
         <template #logo>
-          <div class="menu-logo">管理后台    </t-footer>
-  </t-layout>
-</t-layout>
+          <div class="menu-logo">管理后台</div>
         </template>
         <t-menu-item value="dashboard">
           <template #icon>
@@ -68,23 +27,25 @@
           系统设置
         </t-menu-item>
       </t-menu>
+    </t-aside>
+    <t-layout>
+      <t-header class="custom-header">
+        <h1>自定义布局</h1>
+        <nav>
+          <NuxtLink to="/">返回首页</NuxtLink>
+        </nav>
+      </t-header>
       
-      <main class="main-area">
-        <slot />
-      </main>
-    <t-footer class="custom-footer">
-      <p>系统页脚 &copy; 2024</p>
-    </t-footer>
-  </t-layout>
-</t-layout>
-    
+      <t-content class="main-area">
+        <main class="main-area">
+          <slot />
+        </main>
       </t-content>
-    <t-footer class="custom-footer">
-      <p>自定义布局页脚 &copy; 2023</p>
-    </footer>
+      <t-footer class="custom-footer">
+        <p>系统页脚 &copy; 2024</p>
       </t-footer>
+    </t-layout>
   </t-layout>
-</t-layout>
 </template>
 
 <style scoped>
