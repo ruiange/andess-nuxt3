@@ -6,7 +6,7 @@ export default eventHandler(async () => {
             code: 2000,
             data: contactInfo
         }
-    }catch (e) {
+    }catch (e:any) {
         return {
             code: 5000,
             data: null,
