@@ -8,8 +8,8 @@
 
 <script setup>
 useHead({
-  title: '建材之家',
-  titleTemplate: '%s - 建材之家'
+  title: '安实创业',
+  titleTemplate: '%s - 安实创业'
 })
 </script>
 

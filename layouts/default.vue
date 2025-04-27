@@ -10,8 +10,8 @@
               v-for="item in navItems" 
               :key="item.name" 
               :to="item.path" 
-              class="text-gray-600 hover:text-blue-600 cursor-pointer"
-              :exact-active-class="'!text-blue-600 !font-medium'"
+              class="text-gray-600 hover:text-[#ce8b00] cursor-pointer"
+              :exact-active-class="'!text-[#ce8b00] !font-medium'"
             >
               {{ item.name }}
             </NuxtLink>
@@ -22,7 +22,7 @@
             <input type="text" placeholder="搜索产品或解决方案" class="w-64 h-10 pl-10 pr-4 rounded-lg bg-gray-100 border-none text-sm">
             <i class="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"></i>
           </div>
-          <NuxtLink to="/contact" class="!rounded-button bg-blue-600 text-white px-6 h-10 cursor-pointer whitespace-nowrap flex items-center justify-center">联系我们</NuxtLink>
+          <NuxtLink to="/contact" class="!rounded-button bg-[#ce8b00] text-white px-6 h-10 cursor-pointer whitespace-nowrap flex items-center justify-center">联系我们</NuxtLink>
         </div>
       </div>
     </nav>
