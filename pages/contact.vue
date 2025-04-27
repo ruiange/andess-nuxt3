@@ -29,7 +29,9 @@
             <textarea id="message" v-model="form.message" rows="5" required></textarea>
           </div>
           
-          <button type="submit" class="submit-button">发送消息</button>
+          <button type="submit" class="submit-button" :disabled="loading">
+            {{ loading ? '发送中...' : '发送消息' }}
+          </button>
         </form>
       </div>
       
@@ -58,6 +60,9 @@
 </template>
 
 <script setup>
+import { ref } from 'vue';
+import { useMessage } from '@/composables/useMessage';
+
 const { data: contactInfo } = await useFetch('/api/contact/info')
 
 useHead({
@@ -67,6 +72,8 @@ definePageMeta({
   layout: 'default'
 });
 
+const message = useMessage();
+const loading = ref(false);
 const form = ref({
   name: '',
   email: '',
@@ -74,15 +81,60 @@ const form = ref({
   message: ''
 });
 
-const submitForm = () => {
-  alert('表单已提交！在实际应用中，这里会发送数据到服务器。');
-  // 在实际应用中，这里会处理表单提交逻辑
-  form.value = {
-    name: '',
-    email: '',
-    subject: '',
-    message: ''
-  };
+const validateForm = () => {
+  if (!form.value.name.trim()) {
+    message.error('请输入姓名');
+    return false;
+  }
+  if (!form.value.email.trim()) {
+    message.error('请输入电子邮件');
+    return false;
+  }
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.value.email)) {
+    message.error('请输入有效的电子邮件地址');
+    return false;
+  }
+  if (!form.value.subject.trim()) {
+    message.error('请输入主题');
+    return false;
+  }
+  if (!form.value.message.trim()) {
+    message.error('请输入消息内容');
+    return false;
+  }
+  return true;
+};
+
+const submitForm = async () => {
+  if (!validateForm()) return;
+  
+  loading.value = true;
+  try {
+    const { data, error } = await useFetch('/api/form/contact', {
+      method: 'POST',
+      body: form.value
+    });
+
+    if (error.value) {
+      throw new Error(error.value.data?.message || '提交失败，请稍后重试');
+    }
+
+    if (data.value?.code === 2000) {
+      message.success('提交成功！我们会尽快与您联系。');
+      form.value = {
+        name: '',
+        email: '',
+        subject: '',
+        message: ''
+      };
+    } else {
+      throw new Error(data.value?.message || '提交失败，请稍后重试');
+    }
+  } catch (err) {
+    message.error(err.message);
+  } finally {
+    loading.value = false;
+  }
 };
 </script>
 
