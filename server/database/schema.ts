@@ -30,4 +30,5 @@ export const articles = sqliteTable('articles', {
     favoriteCount: integer('favorite_count').default(0), // 收藏次数（默认值为0）
     attachments: text('attachments').default('[]'), // 附件列表（JSON格式存储，默认为空数组）
     createdAt: integer('created_at', { mode: 'timestamp' }).notNull(), // 创建时间（必填）
+    category: text('category'), // 分类（非必填，默认值为null）
 });
