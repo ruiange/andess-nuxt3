@@ -1,6 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  modules: ['@tdesign-vue-next/nuxt','@nuxtjs/tailwindcss', '@nuxthub/core'],
+  modules: ['@tdesign-vue-next/nuxt', '@nuxtjs/tailwindcss', '@nuxthub/core'],
   nitro: {
     experimental: {
       openAPI: true,
@@ -41,9 +41,9 @@ export default defineNuxtConfig({
     css: {
       preprocessorOptions: {
         less: {
-          additionalData: `@import '@/assets/css/variables.less';`
-        }
-      }
-    }
-  }
+          additionalData: `@import '@/assets/css/variables.less';`,
+        },
+      },
+    },
+  },
 });

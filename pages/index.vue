@@ -17,6 +17,7 @@
 		</div>
 		<!-- 产品分类 -->
 		<div class="max-w-[1440px] mx-auto px-8 py-20">
+      <t-button theme="primary">你好</t-button>
 			<h3 class="text-3xl font-bold text-center mb-12">产品中心</h3>
 			<div class="flex gap-4 mb-12 justify-center">
 				<button
