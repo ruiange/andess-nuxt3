@@ -10,21 +10,27 @@
         </template>
         <t-menu-item value="dashboard">
           <template #icon>
-            <t-icon name="dashboard" />
+            <t-icon name="dashboard" style="color:#ce8b00" />
           </template>
           控制面板
         </t-menu-item>
-        <t-menu-item value="profile">
+        <t-menu-item value="user">
           <template #icon>
-            <t-icon name="user" />
+            <t-icon name="usergroup" style="color:#ce8b00" />
           </template>
-          个人资料
+          用户管理
+        </t-menu-item>
+        <t-menu-item value="news">
+          <template #icon>
+            <t-icon name="news" style="color:#ce8b00" />
+          </template>
+          新闻模块
         </t-menu-item>
         <t-menu-item value="settings">
           <template #icon>
-            <t-icon name="setting" />
+            <t-icon name="setting" style="color:#ce8b00" />
           </template>
-          系统设置
+          设置中心
         </t-menu-item>
       </t-menu>
     </t-aside>

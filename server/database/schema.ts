@@ -17,6 +17,8 @@ export const users = sqliteTable('users', {
     email: text('email').notNull().unique(), // 邮箱（必填且唯一）
     password: text('password').notNull(), // 密码（必填）
     avatar: text('avatar').notNull(), // 头像（必填）
+    role: text('role').default('admin'), // 角色（默认admin）
+    status: integer('status').default(1), // 状态（1=正常，0=禁用）
     createdAt: integer('created_at', { mode: 'timestamp' }).notNull(), // 创建时间（必填）
 })
 

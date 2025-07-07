@@ -47,7 +47,7 @@
           <div>
             <h4 class="text-xl font-bold mb-6">关于我们</h4>
             <p class="text-gray-400">
-              建材之家成立于 2000
+              安实创业成立于 2000
               年，是中国领先的建筑材料供应商，专注于为客户提供高品质的建材产品和专业的技术服务。
             </p>
           </div>
@@ -83,7 +83,7 @@
           </div>
         </div>
         <div class="text-center text-gray-400 pt-8 border-t border-gray-800">
-          <p>© 2025 建材之家. 保留所有权利</p>
+          <p>© 2025 安实创业. 保留所有权利</p>
         </div>
       </div>
     </footer>

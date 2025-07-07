@@ -1,142 +1,101 @@
 <template>
-  <div class="dashboard">
-    <h1>仪表盘</h1>
-    
-    <t-row :gutter="[16, 16]">
+  <div class="admin-dashboard">
+    <t-row :gutter="[24, 24]">
       <t-col :xs="12" :sm="6" :lg="3">
-        <t-card theme="primary" hover-shadow>
-          <template #title>用户统计</template>
-          <template #subtitle>活跃用户</template>
-          <template #actions>
-            <t-icon name="user" />
-          </template>
-          <div class="stat-number">1,234</div>
-        </t-card>
+        <NuxtLink to="#" class="dashboard-link">
+          <t-card hover-shadow :style="cardStyle">
+            <template #title>
+              <t-icon name="usergroup" :style="iconStyle" /> 用户管理
+            </template>
+            <div class="dashboard-desc">管理平台用户，分配权限</div>
+          </t-card>
+        </NuxtLink>
       </t-col>
-      
       <t-col :xs="12" :sm="6" :lg="3">
-        <t-card theme="success" hover-shadow>
-          <template #title>收入</template>
-          <template #subtitle>本月收入</template>
-          <template #actions>
-            <t-icon name="money" />
-          </template>
-          <div class="stat-number">¥9,876</div>
-        </t-card>
+        <NuxtLink to="/admin/news" class="dashboard-link">
+          <t-card hover-shadow :style="cardStyle">
+            <template #title>
+              <t-icon name="news" :style="iconStyle" /> 新闻模块
+            </template>
+            <div class="dashboard-desc">发布、编辑和管理新闻内容</div>
+          </t-card>
+        </NuxtLink>
       </t-col>
-      
       <t-col :xs="12" :sm="6" :lg="3">
-        <t-card theme="warning" hover-shadow>
-          <template #title>订单</template>
-          <template #subtitle>待处理订单</template>
-          <template #actions>
-            <t-icon name="cart" />
-          </template>
-          <div class="stat-number">567</div>
-        </t-card>
+        <NuxtLink to="#" class="dashboard-link">
+          <t-card hover-shadow :style="cardStyle">
+            <template #title>
+              <t-icon name="dashboard" :style="iconStyle" /> 控制面板
+            </template>
+            <div class="dashboard-desc">查看系统统计与运行状态</div>
+          </t-card>
+        </NuxtLink>
       </t-col>
-      
       <t-col :xs="12" :sm="6" :lg="3">
-        <t-card theme="danger" hover-shadow>
-          <template #title>评论</template>
-          <template #subtitle>新评论</template>
-          <template #actions>
-            <t-icon name="chat" />
-          </template>
-          <div class="stat-number">42</div>
-        </t-card>
+        <NuxtLink to="#" class="dashboard-link">
+          <t-card hover-shadow :style="cardStyle">
+            <template #title>
+              <t-icon name="setting" :style="iconStyle" /> 设置中心
+            </template>
+            <div class="dashboard-desc">系统参数与安全设置</div>
+          </t-card>
+        </NuxtLink>
       </t-col>
     </t-row>
-    
-    <div class="recent-activity">
-      <h2>最近活动</h2>
-      <ul>
-        <li>用户 A 完成了订单 #12345</li>
-        <li>用户 B 发表了新评论</li>
-        <li>用户 C 更新了个人资料</li>
-        <li>用户 D 添加了新产品到购物车</li>
-      </ul>
-    </div>
   </div>
 </template>
 
 <script setup>
 // 使用自定义布局
-definePageMeta({
-  layout: 'admin'
-});
+import { computed, useRouter } from 'vue'
+import { onMounted } from 'vue'
+
+definePageMeta({ layout: 'admin' })
+
+const router = useRouter()
+
+onMounted(() => {
+  const token = useCookie('admin_token').value
+  if (!token) {
+    router.replace('/admin/login')
+  }
+})
+
+// 主题色样式
+const cardStyle = computed(() => ({
+  border: '1px solid #ce8b00',
+  borderRadius: '10px',
+  transition: 'box-shadow 0.2s',
+}))
+const iconStyle = {
+  color: '#ce8b00',
+  fontSize: '1.5rem',
+  marginRight: '8px',
+}
 </script>
 
 <style scoped>
-.dashboard {
-  padding: 1rem;
+.admin-dashboard {
+  padding: 2rem 1rem;
 }
-
-h1 {
-  margin-bottom: 1rem;
-  color: #333;
+.dashboard-link {
+  text-decoration: none;
+  display: block;
 }
-
-.dashboard-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1.5rem;
-  margin: 2rem 0;
+.t-card {
+  min-height: 120px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  cursor: pointer;
+  transition: box-shadow 0.2s;
 }
-
-.dashboard-card {
-  background-color: white;
-  padding: 1.5rem;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  text-align: center;
+.t-card:hover {
+  box-shadow: 0 4px 16px rgba(206, 139, 0, 0.15);
 }
-
-.dashboard-card h3 {
+.dashboard-desc {
   color: #666;
+  margin-top: 0.5rem;
   font-size: 1rem;
-  margin-bottom: 0.5rem;
-}
-
-.stat {
-  font-size: 2rem;
-  font-weight: bold;
-  color: #001529;
-  margin: 0.5rem 0;
-}
-
-.recent-activity {
-  background-color: white;
-  padding: 1.5rem;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  margin-top: 2rem;
-}
-
-.recent-activity h2 {
-  color: #333;
-  margin-bottom: 1rem;
-  font-size: 1.25rem;
-}
-
-.recent-activity ul {
-  list-style: none;
-  padding: 0;
-}
-
-.recent-activity li {
-  padding: 0.75rem 0;
-  border-bottom: 1px solid #eee;
-}
-
-.recent-activity li:last-child {
-  border-bottom: none;
-}
-
-.stat-number {
-  font-size: 24px;
-  font-weight: bold;
-  color: var(--td-brand-color);
-  margin-top: 8px;
 }
 </style>
