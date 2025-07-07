@@ -26,6 +26,9 @@ export const users = sqliteTable('users', {
 export const articles = sqliteTable('articles', {
     id: integer('id').primaryKey({ autoIncrement: true }), // 主键ID，自增
     title: text('title').notNull(), // 标题（必填）
+    summary: text('summary'), // 摘要（可选）
+    image: text('image'), // 封面图片（可选）
+    tags: text('tags').default('[]'), // 标签（JSON数组，默认为空数组）
     content: text('content').notNull(), // 内容（必填）
     publishedAt: integer('published_at', { mode: 'timestamp' }).notNull(), // 发布日期（必填）
     viewCount: integer('view_count').default(0), // 浏览次数（默认值为0）

@@ -9,11 +9,10 @@ export default eventHandler(async (event) => {
   if (!email || !password) {
     return { code: 400, message: '邮箱和密码不能为空' }
   }
-  console.log(email, password)
+
   // 查询用户
   const db = useDrizzle()
-  const list = await db.select().from(users).where().get()
-  console.log(list)
+
   const user = await db.select().from(users).where(eq(users.email, email)).get()
   if (!user) {
     return { code: 401, message: '用户不存在' }
