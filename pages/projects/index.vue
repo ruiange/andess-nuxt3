@@ -21,7 +21,7 @@
             class="px-4 py-2 rounded-full text-sm transition-colors"
             :class="
               activeCategory === category
-                ? 'bg-blue-600 text-white'
+                ? 'bg-[var(--td-brand-color)] text-white'
                 : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
             "
           >
@@ -59,11 +59,7 @@
             :key="page"
             @click="currentPage = page"
             class="w-10 h-10 rounded-full flex items-center justify-center text-sm transition-colors"
-            :class="
-              currentPage === page
-                ? 'bg-blue-600 text-white'
-                : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-            "
+            :class="currentPage === page ? 'bg-[var(--td-brand-color)] text-white' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'"
           >
             {{ page }}
           </button>
@@ -75,7 +71,7 @@
     <div class="fixed right-8 bottom-8 flex flex-col gap-4">
       <button
         @click="showConsultModal = true"
-        class="!rounded-button bg-blue-600 text-white w-12 h-12 flex items-center justify-center shadow-lg hover:bg-blue-700 transition-colors"
+        class="!rounded-button bg-[var(--td-brand-color)] text-white w-12 h-12 flex items-center justify-center shadow-lg hover:bg-orange-700 transition-colors"
       >
         <i class="fas fa-comments text-xl"></i>
       </button>
@@ -117,7 +113,7 @@
         </div>
         <button
           @click="submitConsult"
-          class="!rounded-button bg-blue-600 text-white w-full h-12 hover:bg-blue-700 transition-colors"
+          class="!rounded-button bg-[var(--td-brand-color)] text-white w-full h-12 hover:bg-orange-700 transition-colors"
         >
           提交咨询
         </button>

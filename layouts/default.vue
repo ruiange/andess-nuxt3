@@ -10,8 +10,8 @@
               v-for="item in navItems"
               :key="item.name"
               :to="item.path"
-              class="text-gray-600 hover:text-[#ce8b00] cursor-pointer"
-              :exact-active-class="'!text-[#ce8b00] !font-medium'"
+              class="text-gray-600 hover:text-[var(--td-brand-color)] cursor-pointer"
+              :exact-active-class="'!text-[var(--td-brand-color)] !font-medium'"
             >
               {{ item.name }}
             </NuxtLink>
@@ -28,7 +28,7 @@
           </div>
           <NuxtLink
             to="/contact"
-            class="!rounded-button bg-[#ce8b00] text-white px-6 h-10 cursor-pointer whitespace-nowrap flex items-center justify-center"
+            class="!rounded-button bg-[var(--td-brand-color)] text-white px-6 h-10 cursor-pointer whitespace-nowrap flex items-center justify-center"
             >联系我们</NuxtLink
           >
         </div>

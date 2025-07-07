@@ -16,7 +16,7 @@
             :key="solution" 
             @click="currentSolution = solution" 
             class="!rounded-button px-8 py-4 cursor-pointer whitespace-nowrap"
-            :class="currentSolution === solution ? 'text-blue-600 border-b-2 border-blue-600' : 'text-gray-600'"
+            :class="currentSolution === solution ? 'text-[var(--td-brand-color)] border-b-2 border-[var(--td-brand-color)]' : 'text-gray-600'"
           >
             {{ solution }}
           </button>
@@ -39,8 +39,8 @@
             </div>
           </div>
           <div class="flex gap-4">
-            <button @click="showConsultModal = true" class="!rounded-button bg-blue-600 text-white px-8 h-12 cursor-pointer whitespace-nowrap">在线咨询</button>
-            <button @click="showCustomModal = true" class="!rounded-button border-2 border-blue-600 text-blue-600 px-8 h-12 cursor-pointer whitespace-nowrap">方案定制</button>
+            <button @click="showConsultModal = true" class="!rounded-button bg-[var(--td-brand-color)] text-white px-8 h-12 cursor-pointer whitespace-nowrap">在线咨询</button>
+            <button @click="showCustomModal = true" class="!rounded-button border-2 border-[var(--td-brand-color)] text-[var(--td-brand-color)] px-8 h-12 cursor-pointer whitespace-nowrap">方案定制</button>
           </div>
         </div>
         <div class="w-[500px]">
@@ -110,7 +110,7 @@
           <input v-model="consultForm.phone" type="text" placeholder="联系电话" class="w-full h-12 px-4 rounded-lg bg-gray-100 border-none">
           <textarea v-model="consultForm.message" placeholder="咨询内容" rows="4" class="w-full p-4 rounded-lg bg-gray-100 border-none"></textarea>
         </div>
-        <button @click="submitConsult" class="!rounded-button bg-blue-600 text-white w-full h-12 cursor-pointer whitespace-nowrap">提交咨询</button>
+        <button @click="submitConsult" class="!rounded-button bg-[var(--td-brand-color)] text-white w-full h-12 cursor-pointer whitespace-nowrap">提交咨询</button>
       </div>
     </div>
 
@@ -127,7 +127,7 @@
           <input v-model="customForm.area" type="text" placeholder="项目面积" class="w-full h-12 px-4 rounded-lg bg-gray-100 border-none">
           <textarea v-model="customForm.requirements" placeholder="具体需求" rows="4" class="w-full p-4 rounded-lg bg-gray-100 border-none"></textarea>
         </div>
-        <button @click="submitCustom" class="!rounded-button bg-blue-600 text-white w-full h-12 cursor-pointer whitespace-nowrap">提交需求</button>
+        <button @click="submitCustom" class="!rounded-button bg-[var(--td-brand-color)] text-white w-full h-12 cursor-pointer whitespace-nowrap">提交需求</button>
       </div>
     </div>
   </div>

@@ -72,7 +72,7 @@
             </div>
             <div class="flex gap-4">
               <button
-                class="!rounded-button bg-blue-600 text-white px-8 h-12 cursor-pointer whitespace-nowrap"
+                class="!rounded-button bg-[var(--td-brand-color)] text-white px-8 h-12 cursor-pointer whitespace-nowrap"
                 @click="showContactForm = true"
               >
                 立即咨询
@@ -209,7 +209,7 @@
             </div>
           </div>
           <button
-            class="!rounded-button bg-blue-600 text-white w-full h-12 mt-6 cursor-pointer whitespace-nowrap"
+            class="!rounded-button bg-[var(--td-brand-color)] text-white w-full h-12 mt-6 cursor-pointer whitespace-nowrap"
             @click="submitContact"
           >
             提交
@@ -241,7 +241,7 @@
                 <span>{{ doc.name }}</span>
               </div>
               <button
-                class="!rounded-button bg-blue-600 text-white px-4 h-8 text-sm cursor-pointer whitespace-nowrap"
+                class="!rounded-button bg-[var(--td-brand-color)] text-white px-4 h-8 text-sm cursor-pointer whitespace-nowrap"
                 @click="downloadDoc(doc)"
               >
                 下载

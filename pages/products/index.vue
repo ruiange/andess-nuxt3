@@ -16,7 +16,7 @@
           :key="cat"
           @click="currentCategory = cat"
           class="!rounded-button px-6 h-10 cursor-pointer whitespace-nowrap"
-          :class="currentCategory === cat ? 'bg-blue-600 text-white' : 'bg-gray-100 text-gray-600'"
+          :class="currentCategory === cat ? 'bg-[var(--td-brand-color)] text-white' : 'bg-gray-100 text-gray-600'"
         >
           {{ cat }}
         </button>

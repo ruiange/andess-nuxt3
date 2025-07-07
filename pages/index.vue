@@ -8,7 +8,7 @@
 						<h2 class="text-5xl font-bold mb-6">专业建材解决方案提供商</h2>
 						<p class="text-xl mb-8">25 年专业经验，服务超过 10000 个工程项目</p>
 						<div class="flex gap-4">
-							<NuxtLink to="/about" class="!rounded-button bg-blue-600 px-8 h-12 cursor-pointer whitespace-nowrap inline-flex items-center justify-center">了解更多</NuxtLink>
+							<NuxtLink to="/about" class="!rounded-button bg-[var(--td-brand-color)] px-8 h-12 cursor-pointer whitespace-nowrap inline-flex items-center justify-center">了解更多</NuxtLink>
 							<NuxtLink to="/projects" class="!rounded-button border-2 border-white px-8 h-12 cursor-pointer whitespace-nowrap inline-flex items-center justify-center">工程案例</NuxtLink>
 						</div>
 					</div>
@@ -17,7 +17,6 @@
 		</div>
 		<!-- 产品分类 -->
 		<div class="max-w-[1440px] mx-auto px-8 py-20">
-      <t-button theme="primary">你好</t-button>
 			<h3 class="text-3xl font-bold text-center mb-12">产品中心</h3>
 			<div class="flex gap-4 mb-12 justify-center">
 				<button
@@ -25,7 +24,7 @@
 						:key="cat"
 						@click="currentCategory = cat"
 						class="!rounded-button px-6 h-10 cursor-pointer whitespace-nowrap"
-						:class="currentCategory === cat ? 'bg-blue-600 text-white' : 'bg-gray-100 text-gray-600'"
+						:class="currentCategory === cat ? 'bg-[var(--td-brand-color)] text-white' : 'bg-gray-100 text-gray-600'"
 				>
 					{{ cat }}
 				</button>
@@ -51,7 +50,7 @@
 								:key="solution"
 								@click="currentSolution = solution"
 								class="py-3 px-4 rounded cursor-pointer mb-2"
-								:class="currentSolution === solution ? 'bg-blue-600 text-white' : 'text-gray-600'"
+								:class="currentSolution === solution ? 'bg-[var(--td-brand-color)] text-white' : 'text-gray-600'"
 						>
 							{{ solution }}
 						</div>
@@ -65,12 +64,12 @@
 								</p>
 								<ul class="space-y-4">
 									<li v-for="feature in solutionData[currentSolution].features" :key="feature" class="flex items-center gap-3">
-										<i class="fas fa-check-circle text-blue-600"></i>
+										<i class="fas fa-check-circle text-[var(--td-brand-color)]"></i>
 										<span>{{ feature }}</span>
 									</li>
 								</ul>
 								<div class="mt-8">
-									<NuxtLink :to="`/solutions`" class="!rounded-button bg-blue-600 text-white px-8 h-12 cursor-pointer whitespace-nowrap inline-flex items-center justify-center">
+									<NuxtLink :to="`/solutions`" class="!rounded-button bg-[var(--td-brand-color)] text-white px-8 h-12 cursor-pointer whitespace-nowrap inline-flex items-center justify-center">
 										了解更多
 									</NuxtLink>
 								</div>
@@ -95,7 +94,7 @@
 				/>
 			</div>
 			<div class="text-center mt-10">
-				<NuxtLink to="/projects" class="!rounded-button bg-blue-600 text-white px-8 h-12 cursor-pointer whitespace-nowrap inline-flex items-center justify-center">
+				<NuxtLink to="/projects" class="!rounded-button bg-[var(--td-brand-color)] text-white px-8 h-12 cursor-pointer whitespace-nowrap inline-flex items-center justify-center">
 					查看更多案例
 				</NuxtLink>
 			</div>
@@ -115,7 +114,7 @@
 					/>
 				</div>
 				<div class="text-center mt-10">
-					<NuxtLink to="/news" class="!rounded-button bg-blue-600 text-white px-8 h-12 cursor-pointer whitespace-nowrap inline-flex items-center justify-center">
+					<NuxtLink to="/news" class="!rounded-button bg-[var(--td-brand-color)] text-white px-8 h-12 cursor-pointer whitespace-nowrap inline-flex items-center justify-center">
 						查看更多新闻
 					</NuxtLink>
 				</div>
@@ -130,7 +129,7 @@
 						:key="advantage.title"
 						class="text-center"
 				>
-					<i :class="advantage.icon" class="text-4xl text-blue-600 mb-4"></i>
+					<i :class="advantage.icon" class="text-4xl text-[var(--td-brand-color)] mb-4"></i>
 					<h4 class="font-bold mb-2">{{ advantage.title }}</h4>
 					<p class="text-gray-600 text-sm">{{ advantage.desc }}</p>
 				</div>
