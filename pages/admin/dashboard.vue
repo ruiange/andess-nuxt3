@@ -45,20 +45,31 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 // 使用自定义布局
-import { computed, useRouter } from 'vue'
+import { computed } from 'vue'
+import { useRouter } from '#app'
 import { onMounted } from 'vue'
 
 definePageMeta({ layout: 'admin' })
 
 const router = useRouter()
 
-onMounted(() => {
+const checkLogin = async () => {
   const token = useCookie('admin_token').value
   if (!token) {
     router.replace('/admin/login')
+    return
   }
+  // 服务端校验token是否有效
+  const { data } = await useFetch('/api/admin/check', { method: 'POST', body: { token }, credentials: 'include' })
+  if (!data.value || !(data.value as any).valid) {
+    router.replace('/admin/login')
+  }
+}
+
+onMounted(() => {
+  checkLogin()
 })
 
 // 主题色样式

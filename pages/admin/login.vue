@@ -53,22 +53,26 @@ const onSubmit = async () => {
       method: 'POST',
       body: form.value
     })
+    console.log('登录接口返回', data.value, error.value)
     if (error.value) throw error.value
     if (data.value && (data.value as any).token) {
+      console.log('token:', (data.value as any).token)
+      if (typeof window !== 'undefined' && (window as any).$message) {
+        (window as any).$message.success('登录成功，跳转仪表盘')
+      }
+      console.log('执行router.push')
       router.push('/admin/dashboard')
     } else {
       if (typeof window !== 'undefined' && (window as any).$message) {
         (window as any).$message.error((data.value as any)?.message || '登录失败')
-      } else {
-        alert((data.value as any)?.message || '登录失败')
       }
+      console.log('登录失败，未获取到token', data.value)
     }
   } catch (e: any) {
     if (typeof window !== 'undefined' && (window as any).$message) {
       (window as any).$message.error(e.message || '登录失败')
-    } else {
-      alert(e.message || '登录失败')
     }
+    console.log('登录异常', e)
   } finally {
     loading.value = false
   }

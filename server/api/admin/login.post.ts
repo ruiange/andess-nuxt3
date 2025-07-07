@@ -2,17 +2,18 @@ import { readBody, setCookie } from 'h3'
 import { users } from '~/server/database/schema'
 import { useDrizzle, eq } from '~/server/utils/drizzle'
 import bcrypt from 'bcryptjs'
-import jwt from 'jsonwebtoken'
-
-const JWT_SECRET = process.env.JWT_SECRET || 'andess-secret-key'
+import { v4 as uuidv4 } from 'uuid'
 
 export default eventHandler(async (event) => {
   const { email, password } = await readBody(event)
   if (!email || !password) {
     return { code: 400, message: '邮箱和密码不能为空' }
   }
+  console.log(email, password)
   // 查询用户
   const db = useDrizzle()
+  const list = await db.select().from(users).where().get()
+  console.log(list)
   const user = await db.select().from(users).where(eq(users.email, email)).get()
   if (!user) {
     return { code: 401, message: '用户不存在' }
@@ -25,10 +26,19 @@ export default eventHandler(async (event) => {
   if (!valid) {
     return { code: 401, message: '密码错误' }
   }
-  // 生成token
-  const token = jwt.sign({ id: user.id, email: user.email, role: user.role }, JWT_SECRET, { expiresIn: '2h' })
+  // 生成token并写入KV
+  const token = uuidv4()
+  const tokenKey = `admin-token-${token}`
+  await hubKV().set(tokenKey, JSON.stringify({
+    id: user.id,
+    email: user.email,
+    name: user.name,
+    avatar: user.avatar,
+    role: user.role,
+    createdAt: user.createdAt
+  }), { expirationTtl: 60 * 60 * 2 }) // 2小时有效
   // 设置cookie
-  setCookie(event, 'admin_token', token, { httpOnly: true, path: '/admin', maxAge: 60 * 60 * 2 })
+  setCookie(event, 'admin_token', token, { httpOnly: false, path: '/', maxAge: 60 * 60 * 2 })
   return {
     code: 200,
     message: '登录成功',
