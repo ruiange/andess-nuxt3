@@ -24,6 +24,8 @@
   "devDependencies": {
     "@tdesign-vue-next/nuxt": "^0.1.5",
     "drizzle-kit": "^0.31.0",
+    "less": "^4.3.0",
+    "less-loader": "^11.1.4",
     "tdesign-vue-next": "^1.11.5",
     "vue-tsc": "^2.2.8",
     "wrangler": "4.9.1"

@@ -36,4 +36,14 @@ export default defineNuxtConfig({
     viewer: true,
     // and more...
   },
+
+  vite: {
+    css: {
+      preprocessorOptions: {
+        less: {
+          additionalData: `@import '@/assets/css/variables.less';`
+        }
+      }
+    }
+  }
 });
